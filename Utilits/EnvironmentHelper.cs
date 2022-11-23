@@ -1,6 +1,6 @@
-using ArmstrongSecretTools.Models;
+using Armstrong.SecretTool.Models;
 
-namespace ArmstrongSecretTools.Utilits
+namespace Armstrong.SecretTool.Utilits
 {
     public enum SecretType { Client = 1, Server, Both }
     public static class EnvironmentHelper
@@ -20,11 +20,6 @@ namespace ArmstrongSecretTools.Utilits
                     Set(secrets.ServerSecrets);
                     break;
             }
-        }
-
-        public static void GetEnvironments()
-        {
-            var envs = Environment.GetEnvironmentVariables(target: EnvironmentVariableTarget.User);
         }
 
         private static void Set(Dictionary<string, string> secrets)

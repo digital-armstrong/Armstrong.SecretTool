@@ -1,4 +1,4 @@
-namespace ArmstrongSecretTools.Constants
+namespace Armstrong.SecretTool.Constants
 {
     public static class TextConstants
     {

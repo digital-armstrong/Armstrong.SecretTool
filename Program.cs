@@ -1,8 +1,8 @@
-﻿using ArmstrongSecretTools.Helpers;
-using ArmstrongSecretTools.Models;
-using ArmstrongSecretTools.Utilits;
+﻿using Armstrong.SecretTool.Helpers;
+using Armstrong.SecretTool.Models;
+using Armstrong.SecretTool.Utilits;
 
-namespace ArmstrongSecretTools
+namespace Armstrong.SecretTool
 {
     public static class Propgram
     {

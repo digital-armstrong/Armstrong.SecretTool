@@ -1,8 +1,8 @@
-﻿using ArmstrongSecretTools.Models;
+﻿using Armstrong.SecretTool.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ArmstrongSecretTools.Utilits
+namespace Armstrong.SecretTool.Utilits
 {
     public static class JsonParser
     {

@@ -1,7 +1,7 @@
-using ArmstrongSecretTools.Models;
+using Armstrong.SecretTool.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace ArmstrongSecretTools.Helpers
+namespace Armstrong.SecretTool.Helpers
 {
   public static class SayHelloWorld
   {

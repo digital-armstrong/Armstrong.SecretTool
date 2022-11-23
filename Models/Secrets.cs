@@ -1,4 +1,4 @@
-﻿namespace ArmstrongSecretTools.Models
+﻿namespace Armstrong.SecretTool.Models
 {
     public class Secrets
     {
