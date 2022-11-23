@@ -8,17 +8,28 @@ namespace ArmstrongSecretTools
     {
         public static void Main(string[] args)
         {
+            JsonParser.GetSecrets();
             SayHelloWorld.Say();
 
-            System.Console.ReadLine();
+            Console.ReadLine();
 
-            Secret secret = new();
+            int input;
 
-            EnvironmentHelper.SetEnvironments(secret: secret);
-            EnvironmentHelper.GetEnvironments();
+            Console.WriteLine(Constants.TextConstants.ActionChoice);
+            Console.Write(Constants.TextConstants.PromptToInput);
 
-            System.Console.WriteLine("Done!");
-            System.Console.ReadLine();
+            while (!(int.TryParse(Console.ReadLine(), out input) && (input > 0 && input < 4)))
+            {
+                Console.Write(Constants.TextConstants.WrongInput);
+            }
+
+            Secrets secrets = JsonParser.GetSecrets() as Secrets;
+
+            EnvironmentHelper.SetEnvironments(secrets: secrets, (SecretType)input);
+
+            Console.WriteLine("Done!");
+
+            Console.ReadLine();
         }
     }
 }

@@ -2,32 +2,39 @@ using ArmstrongSecretTools.Models;
 
 namespace ArmstrongSecretTools.Utilits
 {
+    public enum SecretType { Client = 1, Server, Both }
     public static class EnvironmentHelper
     {
-        public static string HostEnvName => "CLIENT_HOST";
-        public static string DatabaseEnvName => "CLIENT_DATABASE";
-        public static string UsernameEnvName => "CLIENT_USERNAME";
-        public static string PswdEnvName => "CLIENT_PSWD";
-
-        public static void SetEnvironments(Secret secret)
+        public static void SetEnvironments(Secrets secrets, SecretType secretType)
         {
-            Environment.SetEnvironmentVariable(HostEnvName, secret.Host, EnvironmentVariableTarget.User);
-            Environment.SetEnvironmentVariable(DatabaseEnvName, secret.Database, EnvironmentVariableTarget.User);
-            Environment.SetEnvironmentVariable(UsernameEnvName, secret.Username, EnvironmentVariableTarget.User);
-            Environment.SetEnvironmentVariable(PswdEnvName, secret.Password, EnvironmentVariableTarget.User);
+            switch (secretType)
+            {
+                case SecretType.Client:
+                    Set(secrets.ClientSecrets);
+                    break;
+                case SecretType.Server:
+                    Set(secrets.ServerSecrets);
+                    break;
+                case SecretType.Both:
+                    Set(secrets.ClientSecrets);
+                    Set(secrets.ServerSecrets);
+                    break;
+            }
         }
 
         public static void GetEnvironments()
         {
-            var host = Environment.GetEnvironmentVariable(HostEnvName, EnvironmentVariableTarget.User);
-            var database = Environment.GetEnvironmentVariable(DatabaseEnvName, EnvironmentVariableTarget.User);
-            var user = Environment.GetEnvironmentVariable(UsernameEnvName, EnvironmentVariableTarget.User);
-            var pswd = Environment.GetEnvironmentVariable(PswdEnvName, EnvironmentVariableTarget.User);
+            var envs = Environment.GetEnvironmentVariables(target: EnvironmentVariableTarget.User);
+        }
 
-            System.Console.WriteLine($"{HostEnvName}:\t\t{host}\n"
-                                     + $"{DatabaseEnvName}:\t{database}\n"
-                                     + $"{UsernameEnvName}:\t{user}\n"
-                                     + $"{PswdEnvName}:\t\t{pswd}\n");
+        private static void Set(Dictionary<string, string> secrets)
+        {
+            foreach (var secret in secrets)
+            {
+                Environment.SetEnvironmentVariable(secret.Key,
+                                                   secret.Value,
+                                                   EnvironmentVariableTarget.User);
+            }
         }
     }
 }
