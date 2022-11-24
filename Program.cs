@@ -1,5 +1,4 @@
-﻿using Armstrong.SecretTool.Helpers;
-using Armstrong.SecretTool.Models;
+﻿using Armstrong.SecretTool.Models;
 using Armstrong.SecretTool.Utilits;
 
 namespace Armstrong.SecretTool
@@ -8,8 +7,9 @@ namespace Armstrong.SecretTool
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine(Constants.TextConstants.Licence);
+            
             JsonParser.GetSecrets();
-            SayHelloWorld.Say();
 
             Console.ReadLine();
 
@@ -26,6 +26,7 @@ namespace Armstrong.SecretTool
             Secrets secrets = JsonParser.GetSecrets() as Secrets;
 
             EnvironmentHelper.SetEnvironments(secrets: secrets, (SecretType)input);
+            EnvironmentHelper.GetEnvironments(secrets: secrets, (SecretType)input);
 
             Console.WriteLine("Done!");
 
